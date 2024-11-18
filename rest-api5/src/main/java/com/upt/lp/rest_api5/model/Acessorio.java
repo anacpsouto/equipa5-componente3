@@ -37,8 +37,10 @@ public class Acessorio extends Equipamento {
 
 	@Override
 	public String toString() {
-		return "Acessorio [tipoAcessorio=" + tipoAcessorio + ", informacao=" + informacao + ", toString()="
-				+ super.toString() + "]";
+		return "Acessorio: " +
+				"\nTipoAcessorio = " + tipoAcessorio + 
+				"\nInformação = " + informacao + 
+				"\ntoString() = " + super.toString();
 	}
 	
 	

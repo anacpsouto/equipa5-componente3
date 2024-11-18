@@ -25,7 +25,7 @@ public class Computador extends Equipamento{
 		return tipoComputador;
 	}
 
-	public void setTipo(String tipoComputador) {
+	public void setType(String tipoComputador) {
 		this.tipoComputador = tipoComputador;
 	}
 
@@ -55,8 +55,11 @@ public class Computador extends Equipamento{
 
 	@Override
 	public String toString() {
-		return "Computador [tipoComputador=" + tipoComputador + ", ram=" + ram + ", disco=" + disco + ", processador="
-				+ processador + ", toString()=" + super.toString() + "]";
+		return "Computador [tipoComputador=" + tipoComputador + 
+				", \nram=" + ram + 
+				", \ndisco=" + disco + 
+				", \nprocessador=" + processador + 
+				", \ntoString()=" + super.toString() + "]";
 	}
 
 	

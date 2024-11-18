@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+//import com.upt.donations.model.UserType;
 import com.upt.lp.rest_api5.model.Acessorio;
 import com.upt.lp.rest_api5.model.Computador;
 
@@ -98,16 +99,34 @@ public class RestApi5ClientApplication {
 		}
 	}
 	
-	public void createAcessorio() {
+	public void createAcessorio(Scanner scanner) {
 		
 		Acessorio acessorio = new Acessorio();
 		
-		acessorio.setTipo("Rato");
-		acessorio.setInformacao("Rato wireless");
-		acessorio.setNome("rato do diogo");
-		acessorio.setAno("2005");
-		acessorio.setModelo("logitech");
-		acessorio.setEstadoConservacao("bom estado");
+		System.out.print("\nEnter the accessory type: (EX: HEADSET, MOUSE, KEYBOARD, MOUSEPAD) ");
+		String accessoryType = scanner.nextLine();
+		acessorio.setTipo(accessoryType);
+		
+		System.out.print("\nEnter more information about the accessory: ");
+		String moreInformation = scanner.nextLine();
+		acessorio.setInformacao(moreInformation);
+		
+		System.out.println("\nEnter a name to identify the accessory:");
+		String accessoryName = scanner.nextLine();
+		acessorio.setNome(accessoryName);
+		
+		
+		System.out.print("\nEnter the year: ");
+		String accessoryYear = scanner.nextLine();
+		acessorio.setAno(accessoryYear);
+		
+		System.out.print("\nEnter accessory brand: ");
+		String accessoryBrand = scanner.nextLine();
+		acessorio.setBrand(accessoryBrand);
+		
+		System.out.print("\nEnter the accessory conservation status:");
+		String accessoryConservation = scanner.nextLine();
+		acessorio.setEstadoConservacao(accessoryConservation);
 		
 		/*
 		 * book.setAuthor("Thiago Test 071124"); book.setTitle("Test Book 071124");
@@ -120,6 +139,7 @@ public class RestApi5ClientApplication {
 			Acessorio body = response.getBody();
 			if (body != null) {		
 					System.out.println(body.toString());
+					System.out.println("Equipment added successfully!");
 			} else {
 				System.out.println("No body");
 			}
@@ -128,18 +148,41 @@ public class RestApi5ClientApplication {
 		}
 	}
 	
-	public void createComputador() {
+	public void createComputador(Scanner scanner) {
 		
 		Computador computador = new Computador();
 		
-		computador.setTipo("Portátil");
-		computador.setRam("8GB");
-		computador.setDisco("quadra");
-		computador.setProcessador("yes");
-		computador.setNome("computador da ana");
-		computador.setAno("2002");
-		computador.setModelo("macbook");
-		computador.setEstadoConservacao("bom estado");
+		System.out.print("\nEnter the type of computer: (DESKTOP or LAPTOP): ");
+		String computerType = scanner.nextLine();
+		computador.setType(computerType);
+		
+		System.out.print("\nEnter RAM capacity: (EX: 4GB, 8GB, 16GB, 32GB or more): ");
+		String ramCapacity = scanner.nextLine();
+		computador.setRam(ramCapacity);
+		
+		System.out.print("\nEnter the drive type: (EX: HDD (Hard Disk Drive) or SSD (Solid State Drive): ");
+		String driveType = scanner.nextLine();
+		computador.setDisco(driveType);
+		
+		System.out.print("\nEnter the processor (EX: Intel, AMD, Apple Silicon):  ");
+		String processorType = scanner.nextLine();
+		computador.setProcessador(processorType);
+		
+		System.out.print("\nEnter the name: ");
+		String computerName = scanner.nextLine();
+		computador.setNome(computerName);
+		
+		System.out.print("\nEnter the year: ");
+		String computerYear = scanner.nextLine();
+		computador.setAno(computerYear);
+		
+		System.out.print("\nEnter computer brand (EX: Dell, HP, Lenovo, Apple, Acer, ASUS): ");
+		String computerbrand = scanner.nextLine();
+		computador.setBrand(computerbrand);
+		
+		System.out.print("\nEnter the equipment conservation status:");
+		String computerConservation = scanner.nextLine();
+		computador.setEstadoConservacao(computerConservation);
 		
 		ResponseEntity<Computador> response = restTemplate.postForEntity(rootAPIURLCOMP, computador, Computador.class);
 		
@@ -245,7 +288,7 @@ public class RestApi5ClientApplication {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n===== MENU =====");
+            /*System.out.println("\n===== MENU =====");
             System.out.println("1. Criar Acessório");
             System.out.println("2. Listar Acessórios");
             System.out.println("3. Deletar Acessório");
@@ -253,16 +296,32 @@ public class RestApi5ClientApplication {
             System.out.println("5. Listar Computadores");
             System.out.println("6. Deletar Computador");
             System.out.println("7. Sair");
-            System.out.print("Escolha uma opção: ");
+            System.out.print("Escolha uma opção: ");*/
+        	
+        	System.out.println("\n===== DONOR MENU =====");
+        	System.out.println("1. Add Equipment");
+        	
 
             int option = scanner.nextInt();
             scanner.nextLine(); // Consumir a nova linha
 
             switch (option) {
                 case 1:
-                    myApp.createAcessorio();
-                    break;
-                case 2:
+                	System.out.println("What type of equipment will be add? Choose one of the options below.\n" + 
+                						"1: Computer (or notebook)\n"+
+                						"2: Accessories");
+                	int choiceEquipmentType = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    if(choiceEquipmentType == 1) {
+                    	myApp.createComputador(scanner);
+                    	break;
+                    }
+                    else {
+                    	myApp.createAcessorio(scanner);
+                    	break;
+                    }
+                /*case 2:
                     myApp.getAllAcessorios();
                     break;
                 case 3:
@@ -270,9 +329,9 @@ public class RestApi5ClientApplication {
                     Long acessorioId = scanner.nextLong();
                     myApp.deleteAcessorio(acessorioId);
                     break;
-                case 4:
-                    myApp.createComputador();
-                    break;
+                //case 4:
+                    //myApp.createComputador();
+                    //break;
                 case 5:
                     myApp.getAllComputadores();
                     break;
@@ -284,7 +343,7 @@ public class RestApi5ClientApplication {
                 case 7:
                     System.out.println("Encerrando o programa...");
                     scanner.close();
-                    System.exit(0);
+                    System.exit(0);*/
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
