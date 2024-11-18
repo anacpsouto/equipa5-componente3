@@ -35,7 +35,7 @@ public class ComputadorService {
 	public Computador updateComputador(Long id, Computador computadorDetails) {
 		Computador computador = computadorRepository.findById(id).orElse(null);
 		if (computador != null) {
-			computador.setType(computadorDetails.getTipo());
+			computador.setType(computadorDetails.getType());
 			computador.setRam(computadorDetails.getRam());
 			computador.setDisco(computadorDetails.getDisco());
 			computador.setProcessador(computadorDetails.getProcessador());

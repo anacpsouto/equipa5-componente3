@@ -56,7 +56,7 @@ public class EquipamentoService {
 		if (equipamento instanceof Computador) {
 			Computador existingComputador = computadorRepository.findById(id).orElse(null);
 			if (existingComputador != null) {
-				existingComputador.setType(((Computador) equipamento).getTipo());
+				existingComputador.setType(((Computador) equipamento).getType());
 				existingComputador.setRam(((Computador) equipamento).getRam());
 				return computadorRepository.save(existingComputador);
 			}

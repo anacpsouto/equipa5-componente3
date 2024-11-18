@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class Computador extends Equipamento{
 	
-	private String tipoComputador;
+	private String computerType;
 	private String ram;
 	private String disco;
 	private String processador;
@@ -21,12 +21,12 @@ public class Computador extends Equipamento{
 	 * this.processador = processador; }
 	 */
 	
-	public String getTipo() {
-		return tipoComputador;
+	public String getType() {
+		return computerType;
 	}
 
-	public void setType(String tipoComputador) {
-		this.tipoComputador = tipoComputador;
+	public void setType(String computerType) {
+		this.computerType = computerType;
 	}
 
 	public String getRam() {
@@ -55,7 +55,7 @@ public class Computador extends Equipamento{
 
 	@Override
 	public String toString() {
-		return "Computador [tipoComputador=" + tipoComputador + 
+		return "Computador [tipoComputador=" + computerType + 
 				", \nram=" + ram + 
 				", \ndisco=" + disco + 
 				", \nprocessador=" + processador + 
