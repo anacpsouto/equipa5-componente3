@@ -37,15 +37,30 @@ public class AcessorioService {
 		 */
 	}
 	
-	public Acessorio updateAcessorio(Long id, Acessorio acessorioDetails) {
-		Acessorio acessorio = acessorioRepository.findById(id).orElse(null);
-		if (acessorio != null) {
-			acessorio.setTipo(acessorioDetails.getTipo());
-			acessorio.setInformacao(acessorioDetails.getInformacao());
-			return acessorioRepository.save(acessorio);
-		}
-		
-		return null;
+	/*
+	 * public Acessorio updateAcessorio(Long id, Acessorio acessorioDetails) {
+	 * Acessorio acessorio = acessorioRepository.findById(id).orElse(null); if
+	 * (acessorio != null) { acessorio.setTipo(acessorioDetails.getTipo());
+	 * acessorio.setInformacao(acessorioDetails.getInformacao()); return
+	 * acessorioRepository.save(acessorio); }
+	 * 
+	 * return null; }
+	 */
+	
+	public Acessorio updateAcessorio(Long id, Acessorio acessorio) {
+	    Optional<Acessorio> existingAcessorio = acessorioRepository.findById(id);
+	    if (existingAcessorio.isPresent()) {
+	        Acessorio updated = existingAcessorio.get();
+	        updated.setTipo(acessorio.getTipo());
+	        updated.setInformacao(acessorio.getInformacao());
+	        updated.setNome(acessorio.getNome());
+	        updated.setAno(acessorio.getAno());
+	        updated.setBrand(acessorio.getBrand());
+	        updated.setEstadoConservacao(acessorio.getEstadoConservacao());
+	        return acessorioRepository.save(updated);
+	    } else {
+	        throw new RuntimeException("Acessório com ID " + id + " não encontrado.");
+	    }
 	}
 	
 	public void deleteAcessorio(Long id) {

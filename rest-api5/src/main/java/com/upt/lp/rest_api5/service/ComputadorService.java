@@ -32,17 +32,34 @@ public class ComputadorService {
 		return computadorRepository.save(computador);
 	}
 	
-	public Computador updateComputador(Long id, Computador computadorDetails) {
-		Computador computador = computadorRepository.findById(id).orElse(null);
-		if (computador != null) {
-			computador.setType(computadorDetails.getType());
-			computador.setRam(computadorDetails.getRam());
-			computador.setDisco(computadorDetails.getDisco());
-			computador.setProcessador(computadorDetails.getProcessador());
-			return computadorRepository.save(computador);
-		}
-		
-		return null;
+	/*
+	 * public Computador updateComputador(Long id, Computador computadorDetails) {
+	 * Computador computador = computadorRepository.findById(id).orElse(null); if
+	 * (computador != null) { computador.setType(computadorDetails.getType());
+	 * computador.setRam(computadorDetails.getRam());
+	 * computador.setDisco(computadorDetails.getDisco());
+	 * computador.setProcessador(computadorDetails.getProcessador()); return
+	 * computadorRepository.save(computador); }
+	 * 
+	 * return null; }
+	 */
+	
+	public Computador updateComputador(Long id, Computador computador) {
+	    Optional<Computador> existingComputador = computadorRepository.findById(id);
+	    if (existingComputador.isPresent()) {
+	        Computador updated = existingComputador.get();
+	        updated.setType(computador.getType());
+	        updated.setRam(computador.getRam());
+	        updated.setDisco(computador.getDisco());
+	        updated.setProcessador(computador.getProcessador());
+	        updated.setNome(computador.getNome());
+	        updated.setAno(computador.getAno());
+	        updated.setBrand(computador.getBrand());
+	        updated.setEstadoConservacao(computador.getEstadoConservacao());
+	        return computadorRepository.save(updated);
+	    } else {
+	        throw new RuntimeException("Computador com ID " + id + " não encontrado.");
+	    }
 	}
 	
 	public void deleteComputador(Long id) {

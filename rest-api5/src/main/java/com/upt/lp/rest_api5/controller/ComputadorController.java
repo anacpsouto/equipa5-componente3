@@ -41,9 +41,21 @@ public class ComputadorController {
 		return computadorService.createComputador(computador);
 	}
 	
+	/*
+	 * @PutMapping("/{id}") public Computador updateComputador(@PathVariable Long
+	 * id, @RequestBody Computador computador) { return
+	 * computadorService.updateComputador(id, computador); }
+	 */
+	
 	@PutMapping("/{id}")
-	public Computador updateComputador(@PathVariable Long id, @RequestBody Computador computador) {
-		return computadorService.updateComputador(id, computador);
+	public ResponseEntity<?> updateComputador(@PathVariable Long id, @RequestBody Computador computador) {
+	    Optional<Computador> existingComputador = computadorService.getComputadorById(id);
+	    if (existingComputador.isPresent()) {
+	        Computador updated = computadorService.updateComputador(id, computador);
+	        return ResponseEntity.ok(updated);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
 	}
 	
 	@DeleteMapping("/{id}")

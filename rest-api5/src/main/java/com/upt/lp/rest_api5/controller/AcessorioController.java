@@ -40,9 +40,21 @@ public class AcessorioController {
 		return acessorioService.createAcessorio(acessorio);
 	}
 	
+	/*
+	 * @PutMapping("/{id}") public Acessorio updateAcessorio(@PathVariable Long
+	 * id, @RequestBody Acessorio acessorio) { return
+	 * acessorioService.updateAcessorio(id, acessorio); }
+	 */
+	
 	@PutMapping("/{id}")
-	public Acessorio updateAcessorio(@PathVariable Long id, @RequestBody Acessorio acessorio) {
-		return acessorioService.updateAcessorio(id, acessorio);
+	public ResponseEntity<?> updateAcessorio(@PathVariable Long id, @RequestBody Acessorio acessorio) {
+	    Optional<Acessorio> existingAcessorio = acessorioService.getAcessorioById(id);
+	    if (existingAcessorio.isPresent()) {
+	        Acessorio updated = acessorioService.updateAcessorio(id, acessorio);
+	        return ResponseEntity.ok(updated);
+	    } else {
+	        return ResponseEntity.notFound().build();
+	    }
 	}
 	
 	@DeleteMapping("/{id}")
