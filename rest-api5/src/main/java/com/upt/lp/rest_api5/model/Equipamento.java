@@ -15,7 +15,7 @@ public abstract class Equipamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
+	//@JsonIgnore
 	private Long id;
 
 	private String nome;
@@ -39,11 +39,11 @@ public abstract class Equipamento {
 	 * this.estadoConservacao = estadoConservacao; }
 	 */
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

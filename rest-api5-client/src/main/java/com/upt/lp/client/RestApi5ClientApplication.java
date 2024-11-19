@@ -20,6 +20,8 @@ public class RestApi5ClientApplication {
 	private String rootAPIURLACE = "http://localhost:8080/api/acessorios";
 
 	private String rootAPIURLCOMP = "http://localhost:8080/api/computadores";
+	
+	//private String rootAPIURLUSER = "http://localhost:8080/api/users";
 
 	public void getAcessorioById(Long id) {
 
@@ -193,6 +195,7 @@ public class RestApi5ClientApplication {
 		}
 	}
 
+	
 	public void deleteAcessorio(Long id) {
 		try {
 			// Primeiro, pesquisar o livro pelo ID para verificar se ele existe
@@ -297,14 +300,14 @@ public class RestApi5ClientApplication {
 			System.out.println("1. Add Equipment");
 			System.out.println("2. Search Equipment");
 			// System.out.println("3. Edit Equipment");
-			// System.out.println("4. Delete Equipment");
+			 System.out.println("3. Delete Equipment");
 
 			int option = scanner.nextInt();
 			scanner.nextLine(); // Consumir a nova linha
 
 			switch (option) {
 			case 1:
-				System.out.println("What type of equipment will be add? Choose one of the options below.\n"
+				System.out.println("\nWhat type of equipment will be add? Choose one of the options below.\n"
 									+ "1: Computer (or notebook)\n" 
 									+ "2: Accessories");
 				int choiceEquipmentType = scanner.nextInt();
@@ -318,14 +321,14 @@ public class RestApi5ClientApplication {
 					break;
 				}
 			case 2:
-				System.out.println("What type of equipment do you want to research? Choose one of the options below.\n"
+				System.out.println("\nWhat type of equipment do you want to research? Choose one of the options below.\n"
 									+ "1: Computer (or notebook)\n" 
 									+ "2: Accessories");
 				choiceEquipmentType = scanner.nextInt();
 				scanner.nextLine();
 
 				if (choiceEquipmentType == 1) {
-					System.out.print("\nDo you want to search for all computers or for a specific one? Choose one of the options below.\n"
+					System.out.println("\nDo you want to search for all computers or for a specific one? Choose one of the options below.\n"
 										+ "1: All computers. \n"
 										+ "2: A specific. ");
 					int choiceResearchType = scanner.nextInt();
@@ -335,10 +338,14 @@ public class RestApi5ClientApplication {
 						myApp.getAllComputadores(); 
 						break;
 					} else {
-						
+						System.out.println("\nEnter the ID of the computer you want to search: ");
+						Long idSearch = scanner.nextLong();
+						scanner.nextLine();
+						myApp.getComputadorById(idSearch);
+						break;
 					}
 				} else {
-					System.out.print("\nDo you want to search for all accessories or for a specific one? Choose one of the options below.\n"
+					System.out.println("\nDo you want to search for all accessories or for a specific one? Choose one of the options below.\n"
 							+ "1: All accessories. \n"
 							+ "2: A specific. ");
 					int choiceResearchType = scanner.nextInt();
@@ -348,16 +355,40 @@ public class RestApi5ClientApplication {
 						myApp.getAllAcessorios();
 						break;
 					} else {
-
+						System.out.print("\nEnter the ID of the accessory you want to search: ");
+						Long idSearch = scanner.nextLong();
+						scanner.nextLine();
+						myApp.getAcessorioById(idSearch);
+						break;
 					}
 
+				}
+			case 3:
+				System.out.println("\nWhat type of equipment do you want to delete? Choose one of the options below.\n"
+						+ "1: Computer (or notebook)\n" 
+						+ "2: Accessories");
+				choiceEquipmentType = scanner.nextInt();
+				scanner.nextLine();
+
+				if (choiceEquipmentType == 1) {
+					System.out.print("\nEnter the ID of the computer you want to delete: ");
+					Long idToDelete = scanner.nextLong();
+					scanner.nextLine();
+					myApp.deleteComputador(idToDelete);
+					break;
+				}
+				else {
+					System.out.print("\nEnter the ID of the accessory you want to delete: ");
+					Long idToDelete = scanner.nextLong();
+					scanner.nextLine();
+					myApp.deleteAcessorio(idToDelete);
+					break;
 				}
 
 			/*
 			 * case 3: System.out.print("Digite o ID do acessório a ser deletado: "); Long
 			 * acessorioId = scanner.nextLong(); myApp.deleteAcessorio(acessorioId); break;
-			 * //case 4: //myApp.createComputador(); //break; case 5:
-			 * myApp.getAllComputadores(); break; case 6:
+			 case 6:
 			 * System.out.print("Digite o ID do computador a ser deletado: "); Long
 			 * computadorId = scanner.nextLong(); myApp.deleteComputador(computadorId);
 			 * break; case 7: System.out.println("Encerrando o programa...");
