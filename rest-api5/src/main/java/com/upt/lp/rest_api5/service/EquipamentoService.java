@@ -72,5 +72,8 @@ public class EquipamentoService {
         }
         return null;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 }

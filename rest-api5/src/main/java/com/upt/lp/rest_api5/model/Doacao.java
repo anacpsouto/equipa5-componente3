@@ -83,6 +83,7 @@ public class Doacao {
     public void setIdEquipamento(Long idEquipamento) {
         this.idEquipamento = idEquipamento;
     }
+<<<<<<< HEAD
 
 	@Override
 	public String toString() {
@@ -91,5 +92,8 @@ public class Doacao {
 				+ idEquipamento + "]";
 	}
       
+=======
+    
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 }
 

@@ -2,7 +2,10 @@ package com.upt.lp.rest_api5.service;
 
 import java.time.LocalDate;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 
 import org.springframework.stereotype.Service;
 
@@ -49,6 +52,7 @@ public class DoacaoService {
         return doacaoRepository.save(doacao);
     }
     
+<<<<<<< HEAD
     public List<Doacao> getAllByRequesterId(Long idRequerente) {
         return doacaoRepository.findAllByIdRequerente(idRequerente);
     }
@@ -97,5 +101,7 @@ public class DoacaoService {
     }
 
     
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 }
 

@@ -1,11 +1,17 @@
 package com.upt.lp.client;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.ParameterizedTypeReference;
+=======
+import java.util.Scanner;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
@@ -14,7 +20,10 @@ import org.springframework.web.client.RestTemplate;
 import com.upt.lp.rest_api5.model.Acessorio;
 import com.upt.lp.rest_api5.model.Computador;
 import com.upt.lp.rest_api5.model.Doacao;
+<<<<<<< HEAD
 import com.upt.lp.rest_api5.model.Equipamento;
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 import com.upt.lp.rest_api5.model.Utilizador;
 
 @SpringBootApplication
@@ -477,6 +486,7 @@ public class RestApi5ClientApplication {
 	    }
 	}
 
+<<<<<<< HEAD
 	/*
 	 * private void donorMenu(Scanner scanner, Long loggedInUserId) { while (true) {
 	 * 
@@ -557,12 +567,139 @@ public class RestApi5ClientApplication {
 	        System.out.println("4. Delete Equipment");
 	        System.out.println("5. View Donation Requests");
 	        System.out.println("6. Exit");
+=======
+	private void donorMenu(Scanner scanner, Long loggedInUserId) {
+		while (true) {
+
+			System.out.println("\n===== DONOR MENU =====");
+			System.out.println("1. Add Equipment");
+			System.out.println("2. Search Equipment");
+			System.out.println("3. Edit Equipment");
+			System.out.println("4. Delete Equipment");
+			System.out.println("5. Logout");
+
+			int option = scanner.nextInt();
+			scanner.nextLine(); // Consumir a nova linha
+
+			switch (option) {
+			case 1:
+				System.out.println("\nWhat type of equipment will be add? Choose one of the options below.\n"
+						+ "1: Computer (or notebook)\n" + "2: Accessories");
+				int choiceEquipmentType = scanner.nextInt();
+				scanner.nextLine();
+
+				if (choiceEquipmentType == 1) {
+					createComputador(scanner, loggedInUserId);
+					break;
+				} else {
+					createAcessorio(scanner, loggedInUserId);
+					break;
+				}
+			case 2:
+				System.out
+						.println("\nWhat type of equipment do you want to research? Choose one of the options below.\n"
+								+ "1: Computer (or notebook)\n" + "2: Accessories");
+				choiceEquipmentType = scanner.nextInt();
+				scanner.nextLine();
+
+				if (choiceEquipmentType == 1) {
+					System.out.println(
+							"\nDo you want to search for all computers or for a specific one? Choose one of the options below.\n"
+									+ "1: All computers. \n" + "2: A specific. ");
+					int choiceResearchType = scanner.nextInt();
+					scanner.nextLine();
+
+					if (choiceResearchType == 1) {
+						getAllComputadores();
+						break;
+					} else {
+						System.out.println("\nEnter the ID of the computer you want to search: ");
+						Long idSearch = scanner.nextLong();
+						scanner.nextLine();
+						getComputadorById(idSearch);
+						break;
+					}
+				} else {
+					System.out.println(
+							"\nDo you want to search for all accessories or for a specific one? Choose one of the options below.\n"
+									+ "1: All accessories. \n" + "2: A specific. ");
+					int choiceResearchType = scanner.nextInt();
+					scanner.nextLine();
+
+					if (choiceResearchType == 1) {
+						getAllAcessorios();
+						break;
+					} else {
+						System.out.print("\nEnter the ID of the accessory you want to search: ");
+						Long idSearch = scanner.nextLong();
+						scanner.nextLine();
+						getAcessorioById(idSearch);
+						break;
+					}
+
+				}
+				
+			case 3: 
+			    System.out.println("\nWhat type of equipment do you want to update? Choose one of the options below.\n"
+			                       + "1: Computer (or notebook)\n"
+			                       + "2: Accessories");
+			    choiceEquipmentType = scanner.nextInt();
+			    scanner.nextLine();
+
+			    if (choiceEquipmentType == 1) {
+			        updateComputador(scanner);
+			    } else {
+			        updateAcessorio(scanner);
+			    }
+			    break;
+			    
+				
+			case 4:
+				System.out.println("\nWhat type of equipment do you want to delete? Choose one of the options below.\n"
+						+ "1: Computer (or notebook)\n" + "2: Accessories");
+				choiceEquipmentType = scanner.nextInt();
+				scanner.nextLine();
+
+				if (choiceEquipmentType == 1) {
+					System.out.print("\nEnter the ID of the computer you want to delete: ");
+					Long idToDelete = scanner.nextLong();
+					scanner.nextLine();
+					deleteComputador(idToDelete);
+				} else {
+					System.out.print("\nEnter the ID of the accessory you want to delete: ");
+					Long idToDelete = scanner.nextLong();
+					scanner.nextLine();
+					deleteAcessorio(idToDelete);
+				}
+				break;
+				
+			case 5:
+                // Opção de logout
+                System.out.println("Logging out...");
+                return;
+			
+			default:
+				System.out.println("Opção inválida. Tente novamente.");
+			}
+		}
+	
+	}
+	
+	private void recipientMenu(Scanner scanner, Long loggedInUserId) {
+	    while (true) {
+	        System.out.println("\n===== RECIPIENT MENU =====");
+	        System.out.println("1. Register donation");
+	        System.out.println("2. View all donations by email");
+	        System.out.println("3. Finish/cancel donation");
+	        System.out.println("4. Exit");
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 
 	        int option = scanner.nextInt();
 	        scanner.nextLine(); // Consumir a nova linha
 
 	        switch (option) {
 	            case 1:
+<<<<<<< HEAD
 	                System.out.println("\nWhat type of equipment will be added? Choose one of the options below.\n"
 	                        + "1: Computer (or notebook)\n" + "2: Accessories");
 	                int choiceEquipmentType = scanner.nextInt();
@@ -654,12 +791,34 @@ public class RestApi5ClientApplication {
 	            case 6:
 	                System.out.println("Exiting Donor Menu...");
 	                return; // Sai do menu do doador
+=======
+	                registrarPedidoDoacao(scanner, loggedInUserId);
+	                break;
+
+	            case 2:
+	                System.out.print("\nEnter the email to view all related donations: ");
+	                String email = scanner.nextLine();
+	                getAllDonationsByEmail(email);
+	                break;
+
+	            case 3:
+	                System.out.print("\nEnter the ID of the donation to finish or cancel: ");
+	                Long idDoacao = scanner.nextLong();
+	                scanner.nextLine();
+	                finishOrCancelDonation(scanner, idDoacao);
+	                break;
+
+	            case 4:
+	                System.out.println("Exiting Recipient Menu...");
+	                return;
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 
 	            default:
 	                System.out.println("Invalid option. Please try again.");
 	        }
 	    }
 	}
+<<<<<<< HEAD
 	
 	private List<Doacao> getDonationRequestsByDonor(Long loggedInUserId) {
 	    // URL para consultar pedidos de doação feitos ao doador
@@ -842,6 +1001,10 @@ public class RestApi5ClientApplication {
 		  
 		  default: System.out.println("Invalid option. Please try again."); } } }
 	 
+=======
+
+	
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 	private void registrarPedidoDoacao(Scanner scanner, Long loggedInUserId) {
 	    System.out.print("Enter the ID of the equipment you want to request: ");
 	    Long idEquipamento = scanner.nextLong();
@@ -870,27 +1033,43 @@ public class RestApi5ClientApplication {
 	    }
 	}
 	
+<<<<<<< HEAD
 	private void getAllDonationsByRequesterId(Long idRequerente) {
 	    String url = rootAPIURLDOAC + "/all-by-requester-id?idRequerente=" + idRequerente;
+=======
+	private void getAllDonationsByEmail(String email) {
+	    String url = rootAPIURLDOAC + "/all-by-email?email=" + email;
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 
 	    try {
 	        ResponseEntity<Doacao[]> response = restTemplate.getForEntity(url, Doacao[].class);
 
 	        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
 	            Doacao[] donations = response.getBody();
+<<<<<<< HEAD
 	            System.out.println("\nDonations associated with requester ID " + idRequerente + ":");
+=======
+	            System.out.println("\nDonations associated with email " + email + ":");
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 	            for (Doacao doacao : donations) {
 	                System.out.println(doacao);
 	            }
 	        } else {
+<<<<<<< HEAD
 	            System.out.println("No donations found for the provided requester ID.");
+=======
+	            System.out.println("No donations found for the provided email.");
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 	        }
 	    } catch (Exception e) {
 	        System.out.println("Error: " + e.getMessage());
 	    }
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
 	private void finishOrCancelDonation(Scanner scanner, Long idDoacao) {
 	    System.out.println("\nWhat action would you like to take for this donation?");
 	    System.out.println("1: Finish Donation\n2: Cancel Donation");
@@ -937,7 +1116,10 @@ public class RestApi5ClientApplication {
                     break;
                 case 2:
                 	myApp.login(scanner);
+<<<<<<< HEAD
                 	System.out.println("\nYou have been logged out. Returning to Main Menu...");
+=======
+>>>>>>> 390dc94 (commit of donations part and inherent methods)
                     break;
                 case 3:
                     System.out.println("Exiting...");
