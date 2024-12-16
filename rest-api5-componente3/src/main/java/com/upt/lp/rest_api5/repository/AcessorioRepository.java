@@ -11,6 +11,6 @@ import com.upt.lp.rest_api5.model.EstadoEquipamento;
 @Repository
 public interface AcessorioRepository extends JpaRepository<Acessorio, Long> {
 	
-	List<Acessorio> findByEstado(EstadoEquipamento estado);
+	//List<Acessorio> findByEstado(EstadoEquipamento estado);
 
 }

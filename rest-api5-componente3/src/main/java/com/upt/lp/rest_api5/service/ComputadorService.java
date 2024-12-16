@@ -65,10 +65,12 @@ public class ComputadorService {
         }
     }
 
-    // Busca computadores com um estado específico
-    public List<Computador> findByEstado(EstadoEquipamento estado) {
-        return computadorRepository.findByEstado(estado); // Certifique-se de que o repositório possui esse método
-    }
+	/*
+	 * // Busca computadores com um estado específico public List<Computador>
+	 * findByEstado(EstadoEquipamento estado) { return
+	 * computadorRepository.findByEstado(estado); // Certifique-se de que o
+	 * repositório possui esse método }
+	 */
 
     // Atualiza um computador (admin)
     public Computador updateComputadorAdmin(Computador computador) {

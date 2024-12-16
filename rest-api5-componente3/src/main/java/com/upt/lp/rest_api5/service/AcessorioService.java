@@ -67,10 +67,11 @@ public class AcessorioService {
         }
     }
 
-    // Encontra acessórios pelo estado do equipamento
-    public List<Acessorio> findByEstado(EstadoEquipamento estado) {
-        return acessorioRepository.findByEstado(estado); // Repositório para busca
-    }
+	/*
+	 * // Encontra acessórios pelo estado do equipamento public List<Acessorio>
+	 * findByEstado(EstadoEquipamento estado) { return
+	 * acessorioRepository.findByEstado(estado); // Repositório para busca }
+	 */
 
     // Atualiza um acessório administrativamente
     public Acessorio updateAcessorioAdmin(Acessorio acessorio) {
