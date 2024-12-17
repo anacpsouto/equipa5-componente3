@@ -32,11 +32,11 @@ public class RestApi5ClientApplication {
 
 	private String rootAPIURLDOAC = "http://localhost:8080/api/doacoes";
 
-	public void registerUser(Scanner scanner) {
+	public void registerUser(String name, String email, String password, UserType type, Scanner scanner) {
 		Utilizador utilizador = new Utilizador();
 
 		
-		System.out.print("\nEnter your username: ");
+		/*System.out.print("\nEnter your username: ");
 		String username = scanner.nextLine();
 		utilizador.setNome(username);
 
@@ -50,7 +50,7 @@ public class RestApi5ClientApplication {
 
 		System.out.print("\nEnter your type (DONOR/RECIPIENT): ");
 		UserType tipo = UserType.valueOf(scanner.nextLine().toUpperCase());
-		utilizador.setUserType(tipo);
+		utilizador.setUserType(tipo);*/
 
 		// Enviar requisição POST para registar o utilizador
 		ResponseEntity<Utilizador> response = restTemplate.postForEntity(rootAPIURLUSER + "/register", utilizador,
