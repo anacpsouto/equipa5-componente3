@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.upt.lp.rest_api5.model.UserType;
 import com.upt.lp.rest_api5.model.Utilizador;
 import com.upt.lp.rest_api5.repository.UtilizadorRepository;
 
@@ -58,14 +59,14 @@ public class UtilizadorService {
         }
     }
     
-    public boolean validateUserType(String email, String userType) {
+    public boolean validateUserType(String email, UserType userType) {
         Utilizador user = utilizadorRepository.findByEmail(email);
 
         if (user == null) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
 
-        return user.getUserType().equalsIgnoreCase(userType);
+        return user.getUserType().name().equals(userType);
     }
     
     // Autenticar credenciais de login

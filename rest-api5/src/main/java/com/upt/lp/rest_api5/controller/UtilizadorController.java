@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.upt.lp.rest_api5.model.UserType;
 import com.upt.lp.rest_api5.model.Utilizador;
 import com.upt.lp.rest_api5.service.UtilizadorService;
 
@@ -94,7 +95,7 @@ public class UtilizadorController {
     @GetMapping("/validate")
     public ResponseEntity<String> validateUserType(
         @RequestParam String email,
-        @RequestParam String userType
+        @RequestParam UserType userType
     ) {
         boolean isValid = utilizadorService.validateUserType(email, userType);
 

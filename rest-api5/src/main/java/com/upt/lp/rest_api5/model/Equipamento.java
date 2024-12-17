@@ -17,8 +17,8 @@ public abstract class Equipamento {
 
     private String nome;
     private String ano;
-    private String brand;
-    private String estadoConservacao;
+    private String brand; //criar tabela separada 
+    private ConservationStatus conservationStatus; //fazer tabela enum
 
     // Novo campo para armazenar o userID
     private Long userID;
@@ -26,11 +26,11 @@ public abstract class Equipamento {
     public Equipamento() {
     }
 
-    public Equipamento(String nome, String ano, String brand, String estadoConservacao, Long userID) {
+    public Equipamento(String nome, String ano, String brand, ConservationStatus conservationStatus, Long userID) {
         this.nome = nome;
         this.ano = ano;
         this.brand = brand;
-        this.estadoConservacao = estadoConservacao;
+        this.conservationStatus = conservationStatus;
         this.userID = userID; // Atribuindo o userID no construtor
     }
 
@@ -66,12 +66,12 @@ public abstract class Equipamento {
         this.brand = brand;
     }
 
-    public String getEstadoConservacao() {
-        return estadoConservacao;
+    public ConservationStatus getEstadoConservacao() {
+        return conservationStatus;
     }
 
-    public void setEstadoConservacao(String estadoConservacao) {
-        this.estadoConservacao = estadoConservacao;
+    public void setEstadoConservacao(ConservationStatus conservationStatus) {
+        this.conservationStatus = conservationStatus;
     }
 
     // Getter e Setter para userID
@@ -90,7 +90,7 @@ public abstract class Equipamento {
                ", \nnome=" + nome + 
                ", \nano=" + ano + 
                ", \nmarca=" + brand + 
-               ", \nestadoConservacao=" + estadoConservacao +
+               ", \nestadoConservacao=" + conservationStatus +
                ", \nuserID=" + userID;
     }
 }

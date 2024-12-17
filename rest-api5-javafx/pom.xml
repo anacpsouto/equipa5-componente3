@@ -9,11 +9,11 @@
 		<version>3.3.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.upt.lp</groupId>
-	<artifactId>rest-api5</artifactId>
+	<groupId>com.upt.lp.client</groupId>
+	<artifactId>rest-api5-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-api5</name>
-	<description>Project Equipa 5 Rest Api</description>
+	<name>rest-api5-client</name>
+	<description>Project Equipa 5 Rest Api Client</description>
 	<url />
 	<licenses>
 		<license />
@@ -31,6 +31,19 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<!-- JavaFX -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>23.0.1</version> <!-- Replace with the version of JavaFX you
+			are using
+-->
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>23.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -50,23 +63,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- JavaFX -->
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>23.0.1</version> <!-- Replace with the version of JavaFX you
-			are using
--->
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>23.0.1</version>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<!-- Maven compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -86,10 +90,6 @@
 				<configuration>
 					<mainClass>application.Main</mainClass>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

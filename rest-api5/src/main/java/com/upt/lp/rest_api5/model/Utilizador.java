@@ -1,7 +1,10 @@
 package com.upt.lp.rest_api5.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,9 +20,25 @@ public class Utilizador {
     private String senha;
     
     @JsonProperty("user_type") // Mapeando o campo "user_type" se necessário
-    private String userType;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserType userType;
 
-    // Getters e Setters
+    public Utilizador() {
+    	
+    }
+    
+    
+	public Utilizador(Long id, String nome, String email, String senha, UserType userType) {
+		
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.userType = userType;
+	}
+
+
+	// Getters e Setters
     public Long getId() {
         return id;
     }
@@ -52,11 +71,11 @@ public class Utilizador {
         this.senha = senha;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType =  userType;
     }
 }

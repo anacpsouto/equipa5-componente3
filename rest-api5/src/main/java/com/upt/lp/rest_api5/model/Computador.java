@@ -5,10 +5,11 @@ import jakarta.persistence.Entity;
 @Entity
 public class Computador extends Equipamento{
 	
-	private String computerType;
-	private String ram;
-	private String disco;
-	private String processador;
+	//validar e tipificar para nao deixar que coloquem qualquer coisa 
+	private String computerType; //1 == laptop 2 == desktop
+	private String ram; //enum 
+	private String disco;//mudar para capacidade, limitar e colcoar como int 
+	private String processador;//campo aberto ou tabela (assumir que podia ter melhorado)
 	
 	public Computador() {
 	}
