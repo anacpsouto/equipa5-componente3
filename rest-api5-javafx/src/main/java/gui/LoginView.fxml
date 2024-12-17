@@ -67,14 +67,20 @@
             </Label>
             <PasswordField fx:id="loginPassword" layoutX="112.0" layoutY="191.0" prefHeight="30.0" prefWidth="135.0" promptText="Enter your password..." />
             <TextField fx:id="loginEmail" layoutX="109.0" layoutY="146.0" prefHeight="27.0" prefWidth="141.0" promptText="Enter your email..." />
-            <Button fx:id="loginButton" alignment="CENTER" layoutX="33.0" layoutY="268.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #263F73; -fx-cursor: hand;" text="Login" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginButton" alignment="CENTER" layoutX="33.0" layoutY="254.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #263F73; -fx-cursor: hand;" text="Sign in" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="loginCancel" alignment="CENTER" layoutX="33.0" layoutY="312.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #263F73;" text="Cancel" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="loginCancel" alignment="CENTER" layoutX="33.0" layoutY="304.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="220.0" style="-fx-background-color: #263F73;" text="Cancel" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="34.0" layoutY="356.0" text="Don't have an account?" />
+            <Button fx:id="loginClickHere" layoutX="169.0" layoutY="352.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="63.0" style="-fx-background-color: #5b789a; -fx-cursor: hand;" text="Click here" textFill="WHITE">
+               <font>
+                  <Font size="11.0" />
                </font>
             </Button>
          </children>
