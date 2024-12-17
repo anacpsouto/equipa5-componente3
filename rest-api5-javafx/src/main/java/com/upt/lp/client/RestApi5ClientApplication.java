@@ -35,6 +35,7 @@ public class RestApi5ClientApplication {
 	public void registerUser(Scanner scanner) {
 		Utilizador utilizador = new Utilizador();
 
+		
 		System.out.print("\nEnter your username: ");
 		String username = scanner.nextLine();
 		utilizador.setNome(username);
