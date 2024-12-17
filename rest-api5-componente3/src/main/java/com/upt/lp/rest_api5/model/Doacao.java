@@ -15,9 +15,15 @@ public class Doacao {
 
     private LocalDate dataFim;
 
+	/*
+	 * @Column(nullable = false) private String estadoDoacao; // "PENDENTE",
+	 * "TERMINADA", "CANCELADA" -> fazer enum !!!!!!!!!!!!!!!
+	 */
+    
+    @Enumerated(EnumType.STRING) // Armazena o enum como uma string no banco de dados
     @Column(nullable = false)
-    private String estadoDoacao; // "PENDENTE", "TERMINADA", "CANCELADA" -> fazer enum
-
+    private EstadoDoacao estadoDoacao;
+    
     @Column(nullable = false)
     private Long idRequerente;
 
@@ -52,11 +58,20 @@ public class Doacao {
         this.dataFim = dataFim;
     }
 
-    public String getEstadoDoacao() {
+	/*
+	 * public String getEstadoDoacao() { return estadoDoacao; }
+	 */
+
+	/*
+	 * public void setEstadoDoacao(String estadoDoacao) { this.estadoDoacao =
+	 * estadoDoacao; }
+	 */
+    
+    public EstadoDoacao getEstadoDoacao() {
         return estadoDoacao;
     }
 
-    public void setEstadoDoacao(String estadoDoacao) {
+    public void setEstadoDoacao(EstadoDoacao estadoDoacao) {
         this.estadoDoacao = estadoDoacao;
     }
 
@@ -84,12 +99,19 @@ public class Doacao {
         this.idEquipamento = idEquipamento;
     }
 
-	@Override
-	public String toString() {
-		return "Doacao [id=" + id + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", estadoDoacao="
-				+ estadoDoacao + ", idRequerente=" + idRequerente + ", idDoador=" + idDoador + ", idEquipamento="
-				+ idEquipamento + "]";
-	}
+	/*
+	 * @Override public String toString() { return "Doacao [id=" + id +
+	 * ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", estadoDoacao=" +
+	 * estadoDoacao + ", idRequerente=" + idRequerente + ", idDoador=" + idDoador +
+	 * ", idEquipamento=" + idEquipamento + "]"; }
+	 */
+    
+    @Override
+    public String toString() {
+        return "Doacao [id=" + id + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", estadoDoacao="
+                + estadoDoacao + ", idRequerente=" + idRequerente + ", idDoador=" + idDoador + ", idEquipamento="
+                + idEquipamento + "]";
+    }
 
 }
 
