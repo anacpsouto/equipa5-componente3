@@ -6,84 +6,83 @@ import java.time.LocalDate;
 @Entity
 public class Doacao {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private LocalDate dataInicio;
+	@Column(nullable = false)
+	private LocalDate dataInicio;
 
-    private LocalDate dataFim;
+	private LocalDate dataFim;
 
-    @Column(nullable = false)
-    private String estadoDoacao; // "PENDENTE", "TERMINADA", "CANCELADA"
+	@Column(nullable = false)
+	private String estadoDoacao; // "PENDENTE", "TERMINADA", "CANCELADA"
 
-    @Column(nullable = false)
-    private Long idRequerente;
+	@Column(nullable = false)
+	private Long idRequerente;
 
-    @Column(nullable = false)
-    private Long idDoador;
+	@Column(nullable = false)
+	private Long idDoador;
 
-    @Column(nullable = false)
-    private Long idEquipamento;
-    
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
+	@Column(nullable = false)
+	private Long idEquipamento;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	// Getters e Setters
+	public Long getId() {
+		return id;
+	}
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
 
-    public LocalDate getDataFim() {
-        return dataFim;
-    }
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-    public void setDataFim(LocalDate dataFim) {
-        this.dataFim = dataFim;
-    }
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
 
-    public String getEstadoDoacao() {
-        return estadoDoacao;
-    }
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
 
-    public void setEstadoDoacao(String estadoDoacao) {
-        this.estadoDoacao = estadoDoacao;
-    }
+	public String getEstadoDoacao() {
+		return estadoDoacao;
+	}
 
-    public Long getIdRequerente() {
-        return idRequerente;
-    }
+	public void setEstadoDoacao(String estadoDoacao) {
+		this.estadoDoacao = estadoDoacao;
+	}
 
-    public void setIdRequerente(Long idRequerente) {
-        this.idRequerente = idRequerente;
-    }
+	public Long getIdRequerente() {
+		return idRequerente;
+	}
 
-    public Long getIdDoador() {
-        return idDoador;
-    }
+	public void setIdRequerente(Long idRequerente) {
+		this.idRequerente = idRequerente;
+	}
 
-    public void setIdDoador(Long idDoador) {
-        this.idDoador = idDoador;
-    }
+	public Long getIdDoador() {
+		return idDoador;
+	}
 
-    public Long getIdEquipamento() {
-        return idEquipamento;
-    }
+	public void setIdDoador(Long idDoador) {
+		this.idDoador = idDoador;
+	}
 
-    public void setIdEquipamento(Long idEquipamento) {
-        this.idEquipamento = idEquipamento;
-    }
-<<<<<<< HEAD
+	public Long getIdEquipamento() {
+		return idEquipamento;
+	}
+
+	public void setIdEquipamento(Long idEquipamento) {
+		this.idEquipamento = idEquipamento;
+	}
 
 	@Override
 	public String toString() {
@@ -91,9 +90,4 @@ public class Doacao {
 				+ estadoDoacao + ", idRequerente=" + idRequerente + ", idDoador=" + idDoador + ", idEquipamento="
 				+ idEquipamento + "]";
 	}
-      
-=======
-    
->>>>>>> 390dc94 (commit of donations part and inherent methods)
 }
-
