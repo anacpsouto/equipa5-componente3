@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RequestDonationController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Logout" onAction="#logout"/>
+                <MenuItem text="Exit" onAction="#exit"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <Text fx:id="requestTitle" style="-fx-font-size: 20px;"/>
+            <TextField fx:id="equipmentIdField" promptText="Enter Equipment ID"/>
+            <TextField fx:id="donorIdField" promptText="Enter Donor ID"/>
+            <Button text="Register Donation Request" onAction="#registerDonationRequest"/>
+        </VBox>
+    </center>
+</BorderPane>
