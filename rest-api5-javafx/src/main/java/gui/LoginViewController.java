@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.upt.lp.client.RestApi5ClientApplication;
+import com.upt.lp.rest_api5.model.UserType;
+import com.upt.lp.rest_api5.model.Utilizador;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,13 +32,18 @@ public class LoginViewController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		
+		RestApi5ClientApplication restApi = new RestApi5ClientApplication();
+
+		
+		restApi.searchManager("carlos@gmail.com","Eucarlos@2001");
 
 		loginButton.setOnAction(ae -> {
 
 			String email = loginEmail.getText();
 			String password = loginPassword.getText();
 
-			RestApi5ClientApplication restApi = new RestApi5ClientApplication();
+			//RestApi5ClientApplication restApi = new RestApi5ClientApplication();
 
 			try {
 				restApi.login(email, password, null);
@@ -54,7 +61,7 @@ public class LoginViewController implements Initializable {
 		
 		loginClickHere.setOnAction(ae -> {
 
-			RestApi5ClientApplication restApi = new RestApi5ClientApplication();
+			//RestApi5ClientApplication restApi = new RestApi5ClientApplication();
 
 			try {
 				UtilController.changeScene("/gui/RegisterView.fxml");

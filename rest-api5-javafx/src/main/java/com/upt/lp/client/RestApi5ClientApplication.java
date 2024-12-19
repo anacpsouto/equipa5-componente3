@@ -32,35 +32,19 @@ public class RestApi5ClientApplication {
 
 	private String rootAPIURLDOAC = "http://localhost:8080/api/doacoes";
 
-	public void registerUser(String name, String email, String password, UserType type, Scanner scanner) {
-		Utilizador utilizador = new Utilizador();
+	public void registerUser(Utilizador utilizador) {
 
-		
-		/*System.out.print("\nEnter your username: ");
-		String username = scanner.nextLine();
-		utilizador.setNome(username);
 
-		System.out.print("\nEnter your email: ");
-		String email = scanner.nextLine();
-		utilizador.setEmail(email);
+	ResponseEntity<Utilizador> response = restTemplate.postForEntity(rootAPIURLUSER + "/register", utilizador,
+						Utilizador.class);
 
-		System.out.print("\nEnter your password: ");
-		String password = scanner.nextLine();
-		utilizador.setSenha(password);
-
-		System.out.print("\nEnter your type (DONOR/RECIPIENT): ");
-		UserType tipo = UserType.valueOf(scanner.nextLine().toUpperCase());
-		utilizador.setUserType(tipo);*/
-
-		// Enviar requisição POST para registar o utilizador
-		ResponseEntity<Utilizador> response = restTemplate.postForEntity(rootAPIURLUSER + "/register", utilizador,
-				Utilizador.class);
-
-		if (response.getStatusCode().is2xxSuccessful()) {
-			System.out.println("User registered successfully!");
-		} else {
-			System.out.println("Failed to register user.");
-		}
+	if(response.getStatusCode().is2xxSuccessful())
+	{
+		System.out.println("User registered successfully!");
+	}else
+	{
+		System.out.println("Failed to register user.");
+	}
 	}
 
 	public void login(String email, String password, Scanner scanner) {
@@ -102,6 +86,27 @@ public class RestApi5ClientApplication {
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
+	
+	public void searchManager(String email, String password) {
+		String loginUrl = rootAPIURLUSER + "/login?email=" + email + "&senha=" + password;
+		
+		try {
+			ResponseEntity<Utilizador> response = restTemplate.postForEntity(loginUrl, null, Utilizador.class);
+			if (response.getStatusCode().is2xxSuccessful()) {
+				Utilizador loggedInUser = response.getBody();
+				System.out.println("ADM CADASTRADO!");
+				System.out.println("Login successful! Welcome, " + loggedInUser.getNome());
+			} 
+		}catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			System.out.println("ADM NÃO FOI ENCONTRADO NO BANCO DE DADOS, MAS FOI CADASTRADO");
+			Utilizador utilizador = new Utilizador(null, "Carlos", "carlos@gmail.com", "Eucarlos@2001", UserType.MANAGER);
+			RestApi5ClientApplication restApi = new RestApi5ClientApplication();
+			restApi.registerUser(utilizador);
+		}
+	}
+		
+		
 
 	public void updateUser(Scanner scanner) {
 		System.out.print("\nEnter the ID of the user to update: ");
@@ -841,7 +846,7 @@ public class RestApi5ClientApplication {
 	 * default: System.out.println("Invalid option. Please try again."); } } }
 	 */
 
-	//MENUUUUUUUUUUU
+	// MENUUUUUUUUUUU
 	private void recipientMenu(Scanner scanner, Long loggedInUserId) {
 		int option;
 		do {
@@ -970,37 +975,24 @@ public class RestApi5ClientApplication {
 		}
 	}
 
-	/*public static void main(String[] args) {
-		RestApi5ClientApplication myApp = new RestApi5ClientApplication();
-		Scanner scanner = new Scanner(System.in);
-
-		// while (true) {
-		int option;
-		do {
-			System.out.println("\n===== MAIN MENU =====");
-			System.out.println("1. Register");
-			System.out.println("2. Login");
-			System.out.println("3. Exit");
-
-			option = scanner.nextInt();
-			scanner.nextLine(); // Consumir a nova linha
-
-			switch (option) {
-			case 1:
-				myApp.registerUser(scanner);
-				break;
-			case 2:
-				myApp.login(scanner);
-				System.out.println("\nYou have been logged out. Returning to Main Menu...");
-				break;
-			case 3:
-				System.out.println("Exiting...");
-				break;
-			default:
-				System.out.println("Invalid option. Try again.");
-			}
-		} while (option != 3);
-
-	}*/
+	/*
+	 * public static void main(String[] args) { RestApi5ClientApplication myApp =
+	 * new RestApi5ClientApplication(); Scanner scanner = new Scanner(System.in);
+	 * 
+	 * // while (true) { int option; do {
+	 * System.out.println("\n===== MAIN MENU =====");
+	 * System.out.println("1. Register"); System.out.println("2. Login");
+	 * System.out.println("3. Exit");
+	 * 
+	 * option = scanner.nextInt(); scanner.nextLine(); // Consumir a nova linha
+	 * 
+	 * switch (option) { case 1: myApp.registerUser(scanner); break; case 2:
+	 * myApp.login(scanner);
+	 * System.out.println("\nYou have been logged out. Returning to Main Menu...");
+	 * break; case 3: System.out.println("Exiting..."); break; default:
+	 * System.out.println("Invalid option. Try again."); } } while (option != 3);
+	 * 
+	 * }
+	 */
 
 }

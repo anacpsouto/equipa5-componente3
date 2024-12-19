@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.springframework.http.ResponseEntity;
+
 import com.upt.lp.client.RestApi5ClientApplication;
 import com.upt.lp.rest_api5.model.UserType;
+import com.upt.lp.rest_api5.model.Utilizador;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,9 +64,12 @@ public class RegisterViewController implements Initializable {
 
 			RestApi5ClientApplication restApi = new RestApi5ClientApplication();
 
+			Utilizador utilizador = new Utilizador(null, name, email, password, type);
+			
+			
 			try {
-				restApi.registerUser(name, email, password, type, null);
-				UtilController.changeScene("/gui/RegisterView.fxml");
+				restApi.registerUser(utilizador);
+				UtilController.changeScene("/gui/LoginView.fxml");
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -71,6 +77,22 @@ public class RegisterViewController implements Initializable {
 				alert.setContentText("login failed. Try again.");
 				alert.show();
 
+			}	
+
+		});
+		
+		loginButtonRegisterPage.setOnAction(ae -> {
+
+			//RestApi5ClientApplication restApi = new RestApi5ClientApplication();
+
+			try {
+				UtilController.changeScene("/gui/LoginView.fxml");
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("login failed. Try again.");
+				alert.show();
 			}	
 
 		});
