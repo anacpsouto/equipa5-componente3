@@ -20,6 +20,13 @@ public class Acessorio extends Equipamento {
 	 * modelo, estadoConservacao); this.tipoAcessorio = tipoAcessorio;
 	 * this.informacao = informacao; }
 	 */
+	
+	public Acessorio(String nome, String ano, String brand, EstadoConservacao estadoConservacao, 
+            EstadoEquipamento estadoEquipamento, String tipoAcessorio, String informacao) {
+super(nome, ano, brand, estadoConservacao, estadoEquipamento);
+this.tipoAcessorio = tipoAcessorio;
+this.informacao = informacao;
+}
 
 	
 	public String getTipo() {

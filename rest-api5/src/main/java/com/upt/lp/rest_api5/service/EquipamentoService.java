@@ -22,6 +22,7 @@ public class EquipamentoService {
     @Autowired
     private AcessorioRepository acessorioRepository;
 
+    // Retorna todos os equipamentos (incluindo computadores e acessórios)
     public List<Equipamento> getAllEquipamentos() {
         List<Equipamento> equipamentos = new ArrayList<>();
         equipamentos.addAll(computadorRepository.findAll());
@@ -29,44 +30,63 @@ public class EquipamentoService {
         return equipamentos;
     }
 
+    // Retorna um equipamento específico baseado no ID
     public Equipamento getEquipamentoById(Long id) {
-        Optional <Computador> computador = computadorRepository.findById(id);
-        if(computador.isPresent())
+        Optional<Computador> computador = computadorRepository.findById(id);
+        if (computador.isPresent()) {
             return computador.get();
-        Optional <Acessorio> acessorio = acessorioRepository.findById(id);
+        }
+        Optional<Acessorio> acessorio = acessorioRepository.findById(id);
         return acessorio.orElse(null);
     }
 
+    // Cria um novo equipamento, seja computador ou acessório
     public Equipamento createEquipamento(Equipamento equipamento) {
-        // Atribui o userID ao equipamento
+        // Verifica o tipo do equipamento e atribui os valores adequados
         if (equipamento instanceof Computador) {
-            return computadorRepository.save((Computador) equipamento);
+            Computador computador = (Computador) equipamento;
+            // Atribui valores para brand, estadoConservacao e outros, se necessário
+            return computadorRepository.save(computador);
         } else if (equipamento instanceof Acessorio) {
-            return acessorioRepository.save((Acessorio) equipamento);
+            Acessorio acessorio = (Acessorio) equipamento;
+            return acessorioRepository.save(acessorio);
         }
         throw new IllegalArgumentException("Unknown equipment type");
     }
 
+    // Deleta um equipamento
     public void deleteEquipamento(Long id) {
+        // Verifica se é Computador ou Acessório e deleta
         computadorRepository.deleteById(id);
         acessorioRepository.deleteById(id);
     }
 
+    // Atualiza um equipamento existente
     public Equipamento updateEquipamento(Long id, Equipamento equipamento) {
         if (equipamento instanceof Computador) {
             Computador existingComputador = computadorRepository.findById(id).orElse(null);
             if (existingComputador != null) {
-                existingComputador.setType(((Computador) equipamento).getType());
-                existingComputador.setRam(((Computador) equipamento).getRam());
-                existingComputador.setUserID(equipamento.getUserID()); // Atualiza o userID
+                Computador computadorToUpdate = (Computador) equipamento;
+                // Atualiza os campos conforme necessário
+                existingComputador.setComputerType(computadorToUpdate.getComputerType());
+                existingComputador.setRam(computadorToUpdate.getRam());
+                existingComputador.setDisco(computadorToUpdate.getDisco());
+                existingComputador.setProcessador(computadorToUpdate.getProcessador());
+                //existingComputador.setUserID(equipamento.getUserID());
+                existingComputador.setEstadoEquipamento(equipamento.getEstadoEquipamento());
+                existingComputador.setEstadoConservacao(equipamento.getEstadoConservacao());
+                existingComputador.setBrand(computadorToUpdate.getBrand()); // Atualiza a marca
                 return computadorRepository.save(existingComputador);
             }
         } else if (equipamento instanceof Acessorio) {
             Acessorio existingAcessorio = acessorioRepository.findById(id).orElse(null);
             if (existingAcessorio != null) {
-                existingAcessorio.setTipo(((Acessorio) equipamento).getTipo());
-                existingAcessorio.setInformacao(((Acessorio) equipamento).getInformacao());
-                existingAcessorio.setUserID(equipamento.getUserID()); // Atualiza o userID
+                Acessorio acessorioToUpdate = (Acessorio) equipamento;
+                // Atualiza os campos de Acessorio
+                existingAcessorio.setTipo(acessorioToUpdate.getTipo());
+                existingAcessorio.setInformacao(acessorioToUpdate.getInformacao());
+                //existingAcessorio.setUserID(equipamento.getUserID());
+                existingAcessorio.setEstadoEquipamento(equipamento.getEstadoEquipamento());
                 return acessorioRepository.save(existingAcessorio);
             }
         }

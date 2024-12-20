@@ -61,7 +61,6 @@ public class LoginViewController implements Initializable {
 		
 		loginClickHere.setOnAction(ae -> {
 
-			//RestApi5ClientApplication restApi = new RestApi5ClientApplication();
 
 			try {
 				UtilController.changeScene("/gui/RegisterView.fxml");
