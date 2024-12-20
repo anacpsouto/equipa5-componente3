@@ -1,71 +1,90 @@
 package com.upt.lp.rest_api5.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 @Entity
-public class Computador extends Equipamento{
-	
-	//validar e tipificar para nao deixar que coloquem qualquer coisa 
-	private String computerType; //1 == laptop 2 == desktop
-	private String ram; //enum 
-	private String disco;//mudar para capacidade, limitar e colcoar como int 
-	private String processador;//campo aberto ou tabela (assumir que podia ter melhorado)
-	
-	public Computador() {
-	}
-	
+public class Computador extends Equipamento {
+
+    public enum ComputerType {
+        DESKTOP,
+        PORTATIL
+    }
+
+    public enum RamType {
+        GB_8,
+        GB_16,
+        GB_32,
+        GB_64
+    }
+
+    @Enumerated(EnumType.STRING)
+    private ComputerType computerType;
+
+    @Enumerated(EnumType.STRING)
+    private RamType ram;
+
+    private String disco;
+    private String processador;
+
+    public Computador() {
+    }
+
 	/*
-	 * public Computador(String nome, String ano, String modelo, String
-	 * estadoConservacao, String tipoComputador, String ram, String disco, String
-	 * processador) { super(nome, ano, modelo, estadoConservacao);
-	 * this.tipoComputador = tipoComputador; this.ram = ram; this.disco = disco;
-	 * this.processador = processador; }
+	 * public Computador(ComputerType computerType, RamType ram, String disco,
+	 * String processador) { this.computerType = computerType; this.ram = ram;
+	 * this.disco = disco; this.processador = processador; }
 	 */
-	
-	public String getType() {
-		return computerType;
-	}
+    
+ // Construtor que recebe todos os parâmetros
+    public Computador(String nome, String ano, String brand, EstadoConservacao estadoConservacao, EstadoEquipamento estadoEquipamento, ComputerType computerType,
+                      RamType ram, String disco, String processador) {
+        super(nome, ano, brand, estadoConservacao, estadoEquipamento);  // Chama o construtor da classe mãe Equipamento
+        this.computerType = computerType;
+        this.ram = ram;
+        this.disco = disco;
+        this.processador = processador;
+    }
 
-	public void setType(String computerType) {
-		this.computerType = computerType;
-	}
+    public ComputerType getComputerType() {
+        return computerType;
+    }
 
-	public String getRam() {
-		return ram;
-	}
+    public void setComputerType(ComputerType computerType) {
+        this.computerType = computerType;
+    }
 
-	public void setRam(String ram) {
-		this.ram = ram;
-	}
+    public RamType getRam() {
+        return ram;
+    }
 
-	public String getDisco() {
-		return disco;
-	}
+    public void setRam(RamType ram) {
+        this.ram = ram;
+    }
 
-	public void setDisco(String disco) {
-		this.disco = disco;
-	}
+    public String getDisco() {
+        return disco;
+    }
 
-	public String getProcessador() {
-		return processador;
-	}
+    public void setDisco(String disco) {
+        this.disco = disco;
+    }
 
-	public void setProcessador(String processador) {
-		this.processador = processador;
-	}
+    public String getProcessador() {
+        return processador;
+    }
 
-	@Override
-	public String toString() {
-		return "Computador [tipoComputador=" + computerType + 
-				", \nram=" + ram + 
-				", \ndisco=" + disco + 
-				", \nprocessador=" + processador + 
-				", \ntoString()=" + super.toString() + "]";
-	}
+    public void setProcessador(String processador) {
+        this.processador = processador;
+    }
 
-	
-	
-	
-	
-
+    @Override
+    public String toString() {
+        return "Computador [computerType=" + computerType + 
+               ", ram=" + ram + 
+               ", disco=" + disco + 
+               ", processador=" + processador + 
+               ", toString()=" + super.toString() + "]";
+    }
 }
